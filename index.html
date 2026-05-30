@@ -1102,24 +1102,28 @@
     };
 
     function handleWaitlistSubmit(event, source) {
-        event.preventDefault();
-        const inputField = document.getElementById(`${source}-email`);
-        const emailVal = inputField ? inputField.value.trim() : "";
-        if (!emailVal) return;
+    event.preventDefault();
 
-        userEmailAddress = emailVal;
-        surveyAnswers.email = emailVal;
+    const inputField = document.getElementById(`${source}-email`);
+    const emailVal = inputField ? inputField.value.trim() : "";
 
-        let list = JSON.parse(localStorage.getItem('reflow_beta_waitlist')) || [];
-        if (!list.includes(emailVal)) {
-            list.push(emailVal);
-            localStorage.setItem('reflow_beta_waitlist', JSON.stringify(list));
-        }
-
-        document.getElementById('main-lander-content').classList.add('hidden');
-        document.getElementById('thank-you-screen').classList.remove('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!emailVal) {
+        alert("이메일을 입력해주세요.");
+        return;
     }
+
+    userEmailAddress = emailVal;
+    surveyAnswers.email = emailVal;
+    surveyAnswers.source = source;
+
+    document.getElementById('main-lander-content').classList.add('hidden');
+    document.getElementById('thank-you-screen').classList.remove('hidden');
+
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
 
     let currentSurveyStep = 1;
 
@@ -1143,17 +1147,36 @@
         }
     }
 
-    function submitFinalSurvey() {
+    // ... 기존 코드 유지 ...
+
+    async function submitFinalSurvey() {
         const textVal = document.getElementById('survey-q5-text').value.trim();
         surveyAnswers.q5 = textVal;
 
-        let feedbackLogs = JSON.parse(localStorage.getItem('reflow_feedback_logs')) || [];
-        feedbackLogs.push(surveyAnswers);
-        localStorage.setItem('reflow_feedback_logs', JSON.stringify(feedbackLogs));
-
-        document.getElementById('thank-you-survey-flow').classList.add('hidden');
-        document.getElementById('thank-you-completed').classList.remove('hidden');
-    }
+        try {
+            await fetch(
+                "https://script.google.com/macros/s/AKfycbyBVU2-CfrJMz2a3huAQ95Vuu1G7tH640ibHXfepRlkbbEkQZfOIsMxLZQaX6QLJ-wN1A/exec",
+                {
+                    method: "POST",
+                    mode: "no-cors",
+                    body: JSON.stringify({
+                        email: surveyAnswers.email,
+                        q1: surveyAnswers.q1,
+                        q2: surveyAnswers.q2,
+                        q3: surveyAnswers.q3,
+                        q4: surveyAnswers.q4,
+                        q5: surveyAnswers.q5,
+                        source: surveyAnswers.source
+                    })
+                }
+            );
+            document.getElementById('thank-you-survey-flow').classList.add('hidden');
+            document.getElementById('thank-you-completed').classList.remove('hidden');
+        } catch(error) {
+            console.error(error);
+            alert("설문 저장에 실패했습니다.");
+        }
+    } // <--- 이 닫는 괄호가 누락되어 있었습니다!
 
     function returnToMainLander() {
         currentSurveyStep = 1;
