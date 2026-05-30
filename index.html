@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RE:FLOW | 회복은 몰입의 일부입니다</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Pretendard Font (Premium Korean Font) -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tone.js for Sound FX -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#00CDF5', // Premium Cyan Blue
+                            light: '#E6FAFE',
+                            dark: '#00A8CC',
+                            charcoal: '#0A0B0D', // Sophisticated Dark Slate
+                            slate: '#1E293B',
+                            grayBg: '#F8FAFC'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'premium': '0 12px 40px -12px rgba(0, 205, 245, 0.25)',
+                        'bubble': '0 15px 35px -5px rgba(0, 205, 245, 0.15)',
+                        'capsule': '0 20px 50px -15px rgba(10, 11, 13, 0.08)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Pretendard', -apple-system, sans-serif;
+            letter-spacing: -0.025em;
+            word-break: keep-all;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        @keyframes soft-bounce {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-3px) scale(1.005); }
+        }
+        .character-bounce {
+            animation: soft-bounce 5s infinite ease-in-out;
+        }
+        @keyframes breath {
+            0%, 100% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.15); opacity: 0.4; }
+        }
+        .breathing-ring {
+            animation: breath 4s infinite ease-in-out;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] text-brand-charcoal overflow-x-hidden selection:bg-brand selection:text-brand-charcoal">
+
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 w-full z-50 glass-nav border-b border-slate-100 transition-all duration-300">
+    <div class="max-w-5xl mx-auto px-5 h-16 sm:h-20 flex items-center justify-between">
+        <!-- Brand Logo -->
+        <a href="#" class="flex items-center gap-2 group">
+            <div class="w-9 h-9 rounded-full bg-brand flex items-center justify-center shadow-premium transition-transform group-hover:scale-105 duration-300">
+                <svg viewBox="0 0 100 100" class="w-5.5 h-5.5 text-white" fill="currentColor">
+                    <rect x="25" y="25" width="50" height="50" rx="25" />
+                    <circle cx="40" cy="50" r="5.5" fill="#0A0B0D"/>
+                    <circle cx="60" cy="50" r="5.5" fill="#0A0B0D"/>
+                    <path d="M40 64 Q50 71 60 64" stroke="#0A0B0D" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <span class="text-lg font-black tracking-tight text-slate-900 flex items-center">
+                RE<span class="text-brand">:</span>FLOW
+            </span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-7 text-xs sm:text-sm font-semibold text-slate-500">
+            <a href="#problem" class="hover:text-brand transition-colors">가짜 휴식의 덫</a>
+            <a href="#insight" class="hover:text-brand transition-colors">회복 솔루션</a>
+            <a href="#feature-preview" class="hover:text-brand transition-colors">주요 기능</a>
+            <a href="#proof" class="hover:text-brand transition-colors">생생한 후기</a>
+        </div>
+
+        <a href="#register" class="bg-brand-charcoal hover:bg-slate-800 text-white text-xs font-bold px-4 py-2.5 rounded-full transition-all duration-300 shadow-sm">
+            베타 참여하기
+        </a>
+    </div>
+</nav>
+
+<!-- Main Page Layout Wrapper -->
+<div id="main-lander-content" class="block">
+    
+    <!-- Hero Section -->
+    <section class="relative pt-28 pb-14 sm:pt-40 sm:pb-20 overflow-hidden bg-gradient-to-b from-white via-slate-50 to-[#F8FAFC]">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto px-5 relative z-10 text-center">
+            <!-- Upper stretch alert cue card -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-light text-brand-dark font-extrabold text-xs tracking-tight mb-8">
+                <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+                지금 이걸 보고있는 여러분의 자세는 어떤가요? 🧘‍♀️
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.25] sm:leading-[1.2] mb-6">
+                집중은 잘하는데,<br class="sm:hidden"> <br>
+                <span class="text-brand font-black">회복</span>은 자꾸 놓치고 있지 않나요?
+            </h1>
+
+            <p class="text-sm sm:text-base text-slate-500 max-w-xl mx-auto leading-relaxed font-medium mb-10">
+                RE:FLOW는 모니터 앞에서 오래 몰입하는 사람을 위한 3분 회복 설계 서비스입니다. <br>
+                더 오래 집중할 수 있도록 회복을 설계합니다.
+            </p>
+
+            <!-- Fast Email Waitlist Form (Hero Capture) -->
+            <div class="bg-white p-4 sm:p-5 rounded-[2rem] border border-slate-200/80 shadow-capsule max-w-lg mx-auto">
+                <h3 class="text-xs sm:text-sm font-bold text-slate-800 mb-3 flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-bolt text-brand"></i>
+                    <span>지금 무료 베타 등록 시 런칭 알림 전송!</span>
+                </h3>
+                <form onsubmit="handleWaitlistSubmit(event, 'hero')" class="flex flex-col sm:flex-row gap-2">
+                    <input type="email" id="hero-email" required placeholder="이메일 주소를 입력해 주세요" class="flex-1 bg-slate-50 border border-slate-200 focus:border-brand focus:ring-4 focus:ring-brand/20 rounded-full px-5 py-3.5 text-xs sm:text-sm text-slate-800 outline-none transition-all duration-200 font-medium">
+                    <button type="submit" class="bg-brand-charcoal hover:bg-slate-800 text-white font-bold px-6 py-3.5 rounded-full transition-all duration-300 text-xs sm:text-sm shadow-md shrink-0 flex items-center justify-center gap-1.5">
+                        <span>무료 베타 참여하기</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </form>
+                <p class="text-[10px] text-slate-400 mt-2.5">🔒 개인정보는 안전하게 보호되며, 제품 베타 알림 목적으로만 일시 사용됩니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="py-14 sm:py-16 bg-white border-y border-slate-100">
+        <div class="max-w-4xl mx-auto px-5">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-xs font-bold tracking-widest text-brand uppercase">The Hard Truth</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
+                    몰입하는 동안 놓치는 몸의 신호를<br class="sm:hidden"><br>
+                    리플로우가 잡아줍니다!
+                </h2>
+                <p class="mt-2 text-slate-500 text-xs sm:text-sm">
+                    우리는 몰입에 취해 무너지는 임계점을 알아차리지 못합니다.<br>
+                    결국 뇌를 더 과열시키는 <strong>착각 속의 가짜 휴식</strong>만 반복하고 있습니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <!-- Problem 1 -->
+                <div class="bg-slate-50 p-6 rounded-[2rem] border border-slate-100/80">
+                    <span class="text-xs font-black text-brand block mb-1">01. 도파민성 가짜 휴식</span>
+                    <h3 class="text-sm sm:text-base font-bold text-slate-900">화면만 바꾼 눈의 과부하</h3>
+                    <p class="mt-1.5 text-xs text-slate-500 leading-relaxed">
+                        공부하다 릴스나 유튜브를 켜는 건 쉬는 게 아닙니다. 뇌 세포는 정보 과부하를 견디며 더 붉게 타오를 뿐입니다.
+                    </p>
+                </div>
+                <!-- Problem 2 -->
+                <div class="bg-slate-50 p-6 rounded-[2rem] border border-slate-100/80">
+                    <span class="text-xs font-black text-brand block mb-1">02. 불안하고 불편한 휴식</span>
+                    <h3 class="text-sm sm:text-base font-bold text-slate-900">쉬어도 쉬는 것 같지 않게</h3>
+                    <p class="mt-1.5 text-xs text-slate-500 leading-relaxed">
+                        해야 할 일 때문에 마음이 무거워 자리를 지키니, 몸의 효율은 더 바닥으로 곤두박질치고 긴장만 배가됩니다.
+                    </p>
+                </div>
+                <!-- Problem 3 -->
+                <div class="bg-slate-50 p-6 rounded-[2rem] border border-slate-100/80">
+                    <span class="text-xs font-black text-brand block mb-1">03. 한계에 도달한 피로</span>
+                    <h3 class="text-sm sm:text-base font-bold text-slate-900">어느새 돌아가지 않는 뒷목</h3>
+                    <p class="mt-1.5 text-xs text-slate-500 leading-relaxed">
+                        안구 건조와 거북목 통증. 척추가 완전히 구부러질 때까지 몸이 보내는 적색 신호를 놓치고 일합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insight Section -->
+    <section id="insight" class="py-14 sm:py-16 bg-[#F8FAFC]">
+        <div class="max-w-4xl mx-auto px-5">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <span class="text-xs font-bold tracking-widest text-brand uppercase">Our Core Insight</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
+                    우리는 쉬는 법을 모르는 게 아니라,<br>
+                    작업 중 '회복'하는 시스템이 없습니다.
+                </h2>
+            </div>
+
+            <!-- Comparison Table Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mx-auto mb-10">
+                <!-- Card 1 -->
+                <div class="bg-white p-5 rounded-3xl border border-slate-200/80 text-center">
+                    <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center mx-auto mb-3 text-slate-500">
+                        <i class="fa-solid fa-dumbbell text-sm"></i>
+                    </div>
+                    <h4 class="text-xs font-extrabold text-slate-800">운동 앱</h4>
+                    <p class="text-brand-dark text-lg font-black my-1">30분</p>
+                    <p class="text-[10px] text-slate-400 font-medium leading-tight">지금 바로<br>실행하기 부담스러움</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white p-5 rounded-3xl border border-slate-200/80 text-center">
+                    <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center mx-auto mb-3 text-slate-500">
+                        <i class="fa-solid fa-spa text-sm"></i>
+                    </div>
+                    <h4 class="text-xs font-extrabold text-slate-800">명상 앱</h4>
+                    <p class="text-brand-dark text-lg font-black my-1">10분</p>
+                    <p class="text-[10px] text-slate-400 font-medium leading-tight">작업 도중에 켜면<br>몰입 흐름이 끊김</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white p-5 rounded-3xl border border-slate-200/80 text-center">
+                    <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center mx-auto mb-3 text-slate-500">
+                        <i class="fa-solid fa-mobile-screen text-sm"></i>
+                    </div>
+                    <h4 class="text-xs font-extrabold text-slate-800">SNS 릴스</h4>
+                    <p class="text-brand-dark text-lg font-black my-1">무제한</p>
+                    <p class="text-[10px] text-slate-400 font-medium leading-tight">도파민 과부하로<br>오히려 뇌가 더 피곤함</p>
+                </div>
+                <!-- Card 4 (RE:FLOW Highlighted) -->
+                <div class="bg-brand-light p-5 rounded-3xl border-2 border-brand text-center shadow-premium relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-brand text-slate-950 text-[8px] font-black px-2 py-0.5 rounded-bl-lg tracking-wider">RECOMMEND</div>
+                    <div class="w-10 h-10 rounded-full bg-brand flex items-center justify-center mx-auto mb-3 text-slate-950">
+                        <i class="fa-solid fa-heart-pulse text-sm"></i>
+                    </div>
+                    <h4 class="text-xs font-black text-slate-900">RE:FLOW</h4>
+                    <p class="text-brand-dark text-lg font-black my-1">딱 3분</p>
+                    <p class="text-[10px] text-slate-700 font-bold leading-tight">제자리 즉시 가능<br>최상의 효율 복귀</p>
+                </div>
+            </div>
+
+            <div class="p-6 rounded-[2rem] bg-brand-charcoal text-white text-center max-w-2xl mx-auto">
+                <p class="text-xs sm:text-sm font-semibold leading-relaxed">
+                    💬 <strong class="text-brand font-black">"회복은 작업을 강제로 중단하는 것이 아닙니다."</strong><br class="hidden sm:inline">
+                    더 깊고 더 오래 지속되는 진짜 몰입을 돕기 위해 빈틈없이 장착하는 똑똑한 <span class="text-brand font-black">시스템</span>입니다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mid-Page Lead Capture (첫 번째 이메일 수집) -->
+    <section class="py-10 bg-brand border-y border-brand-dark/20 text-slate-950 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-5 relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-left max-w-md">
+                <h3 class="text-lg sm:text-xl font-black tracking-tight leading-tight">지속가능한 작업 흐름을 선점해 보세요</h3>
+                <p class="text-xs font-bold text-slate-800 mt-1">간단한 이메일 등록만으로, 우선 초대권과 VIP얼리 액세스 권한을 드립니다.</p>
+            </div>
+            
+            <form onsubmit="handleWaitlistSubmit(event, 'mid')" class="w-full md:w-auto max-w-md flex flex-col sm:flex-row gap-2 shrink-0">
+                <input type="email" id="mid-email" required placeholder="이메일 주소 입력" class="bg-white/90 focus:bg-white text-slate-950 placeholder-slate-400 font-semibold border-0 outline-none rounded-full px-5 py-3.5 text-xs sm:text-sm shadow-inner min-w-[240px]">
+                <button type="submit" class="bg-brand-charcoal hover:bg-slate-800 text-white font-black px-6 py-3.5 rounded-full text-xs sm:text-sm shadow-md transition-all shrink-0">
+                    무료 베타 참여하기
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Feature Preview: 3-step browser sequence with reduced text and Premium 3D Luka -->
+    <section id="feature-preview" class="py-14 sm:py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-5">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <span class="text-xs font-bold tracking-widest text-brand uppercase">Feature Preview</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
+                    몰입을 무너뜨리지 않는 3가지 리셋 패치
+                </h2>
+            </div>
+
+            <div class="space-y-16">
+                <!-- STEP 1: Highly polished 3D Clay Character Section -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-5 text-left space-y-3">
+                        <div class="inline-block px-3 py-1 bg-brand-light text-brand-dark font-black text-[10px] rounded-full uppercase">Step 01</div>
+                        <h3 class="text-lg sm:text-xl font-black text-slate-900 tracking-tight">🐢 캐릭터가 먼저 지칩니다</h3>
+                        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                            나의 척추와 집중 상태를 딱딱한 숫자 경고가 아닌, 노트북 너머로 반응하는 스마트 아바타 루카를 통해 실시간으로 조율하고 자각합니다.
+                        </p>
+                        <!-- Character state control buttons -->
+                        <div class="pt-2 flex flex-wrap gap-1.5">
+                            <button onclick="setLukaState('focus')" id="btn-focus" class="text-[10px] font-black px-3.5 py-2 rounded-full transition-all bg-slate-900 text-white shadow-sm">
+                                집중 상태 ⚡
+                            </button>
+                            <button onclick="setLukaState('overheat')" id="btn-overheat" class="text-[10px] font-black px-3.5 py-2 rounded-full transition-all bg-slate-100 text-slate-600 hover:text-brand">
+                                작업 과열 🌀
+                            </button>
+                            <button onclick="setLukaState('posture')" id="btn-posture" class="text-[10px] font-black px-3.5 py-2 rounded-full transition-all bg-slate-100 text-slate-600 hover:text-brand">
+                                목/어깨 긴장 ⚠️
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="md:col-span-7 bg-[#FAFBFD] rounded-[2rem] border border-slate-200/70 shadow-premium overflow-hidden">
+                        <!-- Browser Header -->
+                        <div class="flex items-center justify-between px-5 py-3.5 bg-slate-50 border-b border-slate-100">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-slate-200"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-slate-200"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-slate-200"></span>
+                            </div>
+                            <div class="bg-white border border-slate-200/50 rounded-full px-4 py-0.5 text-[9px] text-slate-400 font-medium tracking-wide">
+                                reflow.app/companion
+                            </div>
+                            <div class="w-8"></div>
+                        </div>
+
+                        <!-- Browser Main Body -->
+                        <div class="py-10 bg-slate-900 flex flex-col items-center justify-center relative min-h-[220px]">
+                            <!-- Floating Speech Bubble (Matches image mockups) -->
+                            <div class="absolute top-4 right-4 bg-white border border-slate-100 text-slate-700 text-[10px] sm:text-xs font-black px-3 py-2 rounded-2xl shadow-premium z-10 flex items-center gap-1.5 transition-all duration-300 transform" id="luka-speech-bubble">
+                                <span id="speech-text">좋아! 지금 그대로 유지해요 💙</span>
+                            </div>
+
+                            <!-- 3D Clay-style character 'Luka' Container -->
+                            <div class="relative w-44 h-44 flex items-center justify-center">
+                                
+                                <!-- Sparks and background indicators -->
+                                <div id="sparks-focus" class="absolute inset-0 opacity-100 transition-opacity duration-300 pointer-events-none">
+                                    <span class="absolute top-8 left-12 text-blue-400 animate-pulse text-xl">✨</span>
+                                    <span class="absolute top-2 right-12 text-blue-300 animate-pulse text-sm">✦</span>
+                                </div>
+                                <div id="sparks-overheat" class="absolute inset-0 opacity-0 transition-opacity duration-300 pointer-events-none">
+                                    <span class="absolute top-6 right-8 text-orange-400 text-lg animate-bounce">♨</span>
+                                    <span class="absolute top-16 left-8 text-orange-400 text-sm animate-pulse">♨</span>
+                                </div>
+                                <div id="sparks-posture" class="absolute inset-0 opacity-0 transition-opacity duration-300 pointer-events-none">
+                                    <span class="absolute top-8 left-8 text-purple-400 animate-pulse text-lg">⚠️</span>
+                                </div>
+
+                                <!-- SVG Clay Vector Engine -->
+                                <svg id="clay-luka-svg" viewBox="0 0 200 200" class="w-40 h-40 character-bounce transition-all duration-500">
+                                    <defs>
+                                        <!-- Lighting Gradients for 3D clay look -->
+                                        <radialGradient id="face-clay" cx="45%" cy="30%" r="65%">
+                                            <stop offset="0%" stop-color="#FFECD2"/>
+                                            <stop offset="60%" stop-color="#F9CEB8"/>
+                                            <stop offset="100%" stop-color="#E19F7E"/>
+                                        </radialGradient>
+                                        
+                                        <radialGradient id="hair-clay" cx="30%" cy="20%" r="70%">
+                                            <stop offset="0%" stop-color="#60544B"/>
+                                            <stop offset="40%" stop-color="#3B2F2F"/>
+                                            <stop offset="100%" stop-color="#1E1715"/>
+                                        </radialGradient>
+
+                                        <linearGradient id="sweater-navy" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#24344F"/>
+                                            <stop offset="60%" stop-color="#17233B"/>
+                                            <stop offset="100%" stop-color="#0F1626"/>
+                                        </linearGradient>
+
+                                        <linearGradient id="macbook-cover" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#F1F5F9"/>
+                                            <stop offset="50%" stop-color="#CBD5E1"/>
+                                            <stop offset="100%" stop-color="#64748B"/>
+                                        </linearGradient>
+
+                                        <radialGradient id="eye-iris" cx="35%" cy="35%" r="65%">
+                                            <stop offset="0%" stop-color="#5C4033"/>
+                                            <stop offset="100%" stop-color="#1A0D00"/>
+                                        </radialGradient>
+
+                                        <filter id="soft-clay-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.15"/>
+                                        </filter>
+                                        <filter id="cheek-blur">
+                                            <feGaussianBlur stdDeviation="1.5" />
+                                        </filter>
+                                    </defs>
+
+                                    <!-- Spine curvature indicator for posture -->
+                                    <path id="spine-guide" d="M 125 100 Q 155 125 135 155" stroke="#A855F7" stroke-width="3" stroke-dasharray="4,4" fill="none" opacity="0" class="transition-opacity duration-300" />
+                                    
+                                    <!-- Background elements: plant pot / mugs toggle in JS -->
+                                    <g id="accessory-mug" filter="url(#soft-clay-shadow)" class="transition-transform duration-500">
+                                        <!-- Blue smiling mug -->
+                                        <rect x="40" y="125" width="22" height="28" rx="4" fill="#E0F2FE" />
+                                        <path d="M 62 133 C 62 133, 66 145, 62 145" stroke="#E0F2FE" stroke-width="3.5" fill="none" />
+                                        <!-- Smile face -->
+                                        <circle cx="47" cy="136" r="1.5" fill="#0284C7" />
+                                        <circle cx="55" cy="136" r="1.5" fill="#0284C7" />
+                                        <path d="M 48 142 Q 51 145 54 142" stroke="#0284C7" stroke-width="1.2" fill="none" stroke-linecap="round" />
+                                    </g>
+
+                                    <g id="accessory-coffee" filter="url(#soft-clay-shadow)" opacity="0" class="transition-opacity duration-500">
+                                        <!-- Coffee cup -->
+                                        <path d="M 152 125 L 172 125 L 168 153 L 156 153 Z" fill="#E2E8F0" />
+                                        <!-- Sleeve -->
+                                        <path d="M 153 133 L 171 133 L 169 145 L 155 145 Z" fill="#DDBEAA" />
+                                        <rect x="150" y="121" width="24" height="4" rx="2" fill="#E2E8F0" />
+                                        <!-- Brown smile face -->
+                                        <path d="M 158 139 Q 162 142 166 139" stroke="#6F4E37" stroke-width="1" fill="none" />
+                                    </g>
+
+                                    <g id="accessory-plant" filter="url(#soft-clay-shadow)" opacity="0" class="transition-opacity duration-500">
+                                        <!-- Plant pot -->
+                                        <path d="M 28 135 L 44 135 L 41 153 L 31 153 Z" fill="#E2E8F0" />
+                                        <!-- Leaves -->
+                                        <path d="M 36 135 Q 36 122 32 125 Q 36 128 36 135" fill="#22C55E" />
+                                        <path d="M 36 135 Q 36 120 40 123 Q 36 126 36 135" fill="#4ADE80" />
+                                        <path d="M 36 135 Q 28 126 36 130" fill="#16A34A" />
+                                    </g>
+
+                                    <!-- Base body frame (Adult Male Navy Sweater) -->
+                                    <g id="char-clay-torso" class="transition-all duration-500">
+                                        <path d="M 50 148 C 50 115, 150 115, 150 148 L 150 175 L 50 175 Z" fill="url(#sweater-navy)" filter="url(#soft-clay-shadow)" />
+                                    </g>
+
+                                    <!-- Neck segment -->
+                                    <path id="char-clay-neck" d="M 91 112 Q 100 125 109 112 L 109 125 Q 100 128 91 125 Z" fill="#E19F7E" />
+
+                                    <!-- Adult Proportional Face Group -->
+                                    <g id="char-clay-face" class="transition-all duration-500" filter="url(#soft-clay-shadow)">
+                                        <path d="M 72 74 C 72 54, 128 54, 128 74 C 128 94, 120 106, 100 106 C 80 106, 72 94, 72 74 Z" fill="url(#face-clay)" />
+                                        
+                                        <!-- Cheeks blush -->
+                                        <circle id="clay-cheek-l" cx="80" cy="85" r="4.5" fill="#FF8D8D" opacity="0.25" filter="url(#cheek-blur)" />
+                                        <circle id="clay-cheek-r" cx="120" cy="85" r="4.5" fill="#FF8D8D" opacity="0.25" filter="url(#cheek-blur)" />
+
+                                        <!-- 3D Eyes Group -->
+                                        <g id="clay-eyes">
+                                            <!-- Left eye -->
+                                            <circle cx="86" cy="77" r="4.5" fill="#FFFFFF" />
+                                            <circle cx="86" cy="77" r="3" fill="url(#eye-iris)" />
+                                            <circle cx="84.8" cy="75.8" r="1.1" fill="#FFFFFF" />
+                                            <!-- Right eye -->
+                                            <circle cx="114" cy="77" r="4.5" fill="#FFFFFF" />
+                                            <circle cx="114" cy="77" r="3" fill="url(#eye-iris)" />
+                                            <circle cx="112.8" cy="75.8" r="1.1" fill="#FFFFFF" />
+                                        </g>
+
+                                        <!-- Eyebrows -->
+                                        <g id="clay-eyebrows">
+                                            <path d="M 78 71 Q 84 68 89 71" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" />
+                                            <path d="M 122 71 Q 116 68 111 71" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" />
+                                        </g>
+
+                                        <!-- Sweat drops (Overheat state) -->
+                                        <g id="char-sweat" class="opacity-0 transition-opacity duration-300">
+                                            <!-- Sweat droplet 1 -->
+                                            <path d="M 76 60 Q 74 65 76 67 Q 78 67 76 60" fill="#00CDF5" />
+                                            <!-- Sweat droplet 2 -->
+                                            <path d="M 122 62 Q 120 67 122 69 Q 124 69 122 62" fill="#00CDF5" />
+                                        </g>
+
+                                        <!-- Mouth -->
+                                        <path id="clay-mouth" d="M 94 92 Q 100 95 106 92" stroke="#1E1715" stroke-width="2.2" stroke-linecap="round" fill="none" />
+                                        
+                                        <!-- Nose -->
+                                        <path d="M 98 83 Q 100 86 102 83" stroke="#E19F7E" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                                    </g>
+
+                                    <!-- Textured Wavy Pompadour Clay Hair -->
+                                    <g id="char-clay-hair" class="transition-all duration-500" filter="url(#soft-clay-shadow)">
+                                        <path d="M 71 67 C 69 40, 131 40, 129 67 C 120 50, 80 50, 71 67 Z" fill="url(#hair-clay)" />
+                                        <!-- Clay-style layered waves -->
+                                        <path d="M 75 58 C 85 45, 115 45, 125 58" stroke="#3B2F2F" stroke-width="3" fill="none" />
+                                    </g>
+
+                                    <!-- MacBook mockup overlay -->
+                                    <g id="macbook-device" transform="translate(0, 5)" filter="url(#soft-clay-shadow)">
+                                        <rect x="52" y="112" width="96" height="58" rx="5" fill="#334155" />
+                                        <rect x="55" y="115" width="90" height="52" rx="3.5" fill="url(#macbook-cover)" />
+                                        <!-- Soft light Apple Logo -->
+                                        <path d="M 100 137 C 98 137, 96 139, 96 142 C 96 146, 100 148, 100 148 C 100 148, 104 146, 104 142 C 104 139, 102 137, 100 137 Z" fill="#FFFFFF" opacity="0.35" />
+                                        <path d="M 101 135 C 102 135, 103 136, 103 137" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.35" />
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <div class="mt-4 text-center">
+                                <span id="char-badge" class="px-3.5 py-0.5 bg-brand text-slate-950 font-black text-[9px] rounded-full uppercase tracking-wider mb-1.5 inline-block">FOCUSING</span>
+                                <p id="char-message" class="text-xs font-semibold text-slate-400">차분하고 안정적인 깊은 집중 상태를 유지하고 있습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Humorous friend-like advice -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pt-6">
+                    <div class="md:col-span-5 md:order-2 text-left space-y-3">
+                        <div class="inline-block px-3 py-1 bg-brand-light text-brand-dark font-black text-[10px] rounded-full uppercase">Step 02</div>
+                        <h3 class="text-lg sm:text-xl font-black text-slate-900 tracking-tight">😄 잔소리 대신, 유머러스한 친구의 조언처럼</h3>
+                        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                            딱딱하게 명령하거나 긴장을 더하는 알람이 아니에요. 옆자리 다정한 친구가 슬쩍 건네는 한마디처럼, 피식 웃으며 자연스럽게 몸을 일으키게 되는 따뜻한 알림이 도착합니다.
+                        </p>
+                        <p class="text-[10px] text-slate-400 font-bold">
+                            👇 메시지 카드를 탭해 친구의 한마디와 마이크로 사운드를 들어보세요.
+                        </p>
+                    </div>
+                    
+                    <div class="md:col-span-7 md:order-1 bg-[#FAFBFD] rounded-[2rem] border border-slate-200/70 shadow-premium overflow-hidden">
+                        <!-- Browser Header -->
+                        <div class="flex items-center justify-between px-5 py-3.5 bg-slate-50 border-b border-slate-100">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-slate-200"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-slate-200"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-slate-200"></span>
+                            </div>
+                            <div class="text-[9px] text-slate-400 font-extrabold uppercase">RE:FLOW ALERTS</div>
+                            <div class="w-8"></div>
+                        </div>
+
+                        <!-- Workspace Simulation Area with friendly advice bubble overlays -->
+                        <div class="p-5 bg-slate-100 min-h-[220px] flex flex-col justify-between">
+                            <div class="space-y-2.5">
+                                <!-- Alert Card 1 -->
+                                <div onclick="playAlertSound('야, 한 자세로 너무 오래 있었어! 잠깐 일어나서 기지개 쭉 켜고 오자 🙆')" class="bg-white/95 border border-slate-200 rounded-xl p-3 shadow-sm hover:scale-[1.01] cursor-pointer transition-all flex items-center justify-between group">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-lg">🙆</span>
+                                        <div class="text-left">
+                                            <p class="text-[8px] font-black text-slate-400 tracking-wider">RE:FLOW • 친구의 한마디</p>
+                                            <p class="text-xs font-bold text-slate-800">"같은 자세 너무 오래 있었어, 같이 기지개 켤까?"</p>
+                                        </div>
+                                    </div>
+                                    <i class="fa-solid fa-volume-high text-slate-300 group-hover:text-brand transition-colors text-[10px]"></i>
+                                </div>
+
+                                <!-- Alert Card 2 -->
+                                <div onclick="playAlertSound('어깨 잔뜩 굳은 거 보인다! 내가 봤을 땐 지금 한 번 풀어주는 게 딱 좋아 💪')" class="bg-white/95 border border-slate-200 rounded-xl p-3 shadow-sm hover:scale-[1.01] cursor-pointer transition-all flex items-center justify-between group">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-lg">💪</span>
+                                        <div class="text-left">
+                                            <p class="text-[8px] font-black text-slate-400 tracking-wider">RE:FLOW • 친구의 한마디</p>
+                                            <p class="text-xs font-bold text-slate-800">"어깨 잔뜩 뭉쳤네, 잠깐 같이 풀어주자!"</p>
+                                        </div>
+                                    </div>
+                                    <i class="fa-solid fa-volume-high text-slate-300 group-hover:text-brand transition-colors text-[10px]"></i>
+                                </div>
+                            </div>
+
+                            <!-- Toast Output message banner -->
+                            <div class="mt-4 pt-2 border-t border-slate-200/50 flex items-center justify-center">
+                                <p id="alert-toast-output" class="text-[11px] font-black text-slate-500 tracking-tight text-center truncate">
+                                    💬 친구의 한마디 카드를 눌러보세요.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3: 3-Min Reset -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pt-6">
+                    <div class="md:col-span-5 text-left space-y-3">
+                        <div class="inline-block px-3 py-1 bg-brand-light text-brand-dark font-black text-[10px] rounded-full uppercase">Step 03</div>
+                        <h3 class="text-lg sm:text-xl font-black text-slate-900 tracking-tight">⚡ 딱 3분만 회복합니다</h3>
+                        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                            잠시 흐름을 전환하면 더 맑은 집중도로 오랫동안 속도를 낼 수 있습니다. 미세 디밍(Dimming) 스크린 효과와 함께 3분간 척추를 세우고 시선을 이완하세요.
+                        </p>
+                    </div>
+                    
+                    <div class="md:col-span-7 bg-[#FAFBFD] rounded-[2rem] border border-slate-200/70 shadow-premium overflow-hidden">
+                        <!-- Browser Header -->
+                        <div class="flex items-center justify-between px-5 py-3.5 bg-slate-50 border-b border-slate-100">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-slate-200"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-slate-200"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-slate-200"></span>
+                            </div>
+                            <div class="text-[9px] text-slate-400 font-bold">RE:FLOW ACTIVE DIMMER</div>
+                            <div class="w-8"></div>
+                        </div>
+
+                        <!-- Dimmer Interactive screen -->
+                        <div id="dimmer-demo-screen" class="min-h-[220px] bg-slate-950 flex flex-col items-center justify-center text-center p-5 transition-all duration-700 relative">
+                            <!-- Breathing lines in background -->
+                            <div class="absolute w-44 h-44 border border-brand/10 rounded-full breathing-ring flex items-center justify-center pointer-events-none">
+                                <div class="w-32 h-32 border border-brand/20 rounded-full breathing-ring"></div>
+                            </div>
+
+                            <div class="relative z-10 space-y-3">
+                                <h3 id="dimmer-title" class="text-xs sm:text-sm font-black text-white leading-tight">"목과 어깨가 긴장 상태에 들어갔어요. 잠시 눈을 식혀볼까요?"</h3>
+                                <div id="dimmer-clock" class="text-2xl font-mono font-black text-brand">03:00</div>
+                                <button id="dimmer-action-btn" onclick="toggleDimmerSimulation()" class="bg-brand text-slate-950 font-extrabold text-[10px] px-4 py-2 rounded-full transition-all shadow-premium hover:bg-brand-dark">
+                                    회복 디밍 체험하기
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center text-[10px] text-slate-400 mt-8">
+                🔒 <strong>보안 수칙 엄수:</strong> 모든 화상 좌표 데이터는 MediaPipe On-device AI 기술을 적용하여, 로컬 브라우저 1회성 판독 직후 메모리 파기되며 외부 서버 전송은 0%입니다.
+            </p>
+        </div>
+    </section>
+
+   <!-- Social Proof Section -->
+    <section id="proof" class="py-14 sm:py-16 bg-[#F8FAFC] border-y border-slate-100">
+        <div class="max-w-4xl mx-auto px-5">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <span class="text-xs font-bold tracking-widest text-brand uppercase">Verified Experience</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
+                    실제 베타테스터분들의 생생한 목소리
+                </h2>
+                <p class="mt-2 text-slate-500 text-xs sm:text-sm">
+                    MVP 테스트를 거쳐 검증된 실제 사용후기입니다.<br>
+                    잔소리 같던 기존의 자세교정 앱과는 전혀 다른 만족감을 경험해 보세요.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto">
+                <!-- Card 1 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200/50 shadow-sm flex flex-col justify-between">
+                    <p class="text-xs sm:text-sm text-slate-600 font-semibold leading-relaxed">
+                        "현실 조언 오피스 톤을 선택했는데 시작하자마자 공격적으로 <strong class="text-brand-dark">‘거북이가 친구하자고 한다’</strong>고 해서 빵 터졌어요 😂 단순히 딱딱하게 경고만 주는 게 아니라 확실한 캐릭터성이 있어서 부담감이 덜했고, 훨씬 유쾌하게 스트레칭을 시작할 수 있었습니다."
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <p class="text-[11px] font-black text-slate-900">20대 IT 서비스 디자이너</p>
+                        <span class="text-[10px] bg-slate-100 px-2 py-0.5 rounded-full text-slate-500">현실조언 오피스톤</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200/50 shadow-sm flex flex-col justify-between">
+                    <p class="text-xs sm:text-sm text-slate-600 font-semibold leading-relaxed">
+                        "‘엉덩이가 회의를 요청했습니다. (내용: 저 무려 1시간 동안 깔려 있었어요... 숨 막혀요...)’ 이 알림이 진짜 신선하고 재미있었어요! 늘 타이밍을 놓쳐서 목이 부서지기 일보직전이었는데, <strong>나만을 위한 친구와 같이 든든하게 달리는 기분</strong>입니다."
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <p class="text-[11px] font-black text-slate-900">프리랜서 개발자</p>
+                        <span class="text-[10px] bg-slate-100 px-2 py-0.5 rounded-full text-slate-500">1인 작업 헤비 유저</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200/50 shadow-sm flex flex-col justify-between">
+                    <p class="text-xs sm:text-sm text-slate-600 font-semibold leading-relaxed">
+                        "평소엔 집중력이 깨질 때까지 쉬지 않고 버티다 효율이 안나서 야근했거든요. 근데 3분 패치를 하고 나서<strong>하루 전체의 집중력과 작업 능률이 오래 유지되는 놀라운 경험<strong>을 했습니다."
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <p class="text-[11px] font-black text-slate-900">스타트업 테크 PM</p>
+                        <span class="text-[10px] bg-brand-light text-brand-dark px-2 py-0.5 rounded-full">지속가능한 몰입</span>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200/50 shadow-sm flex flex-col justify-between">
+                    <p class="text-xs sm:text-sm text-slate-600 font-semibold leading-relaxed">
+                        "첫 알림으로 거북목을 콕 짚어주니까, 그 이후로도 자세를 계속 신경쓰게 돼요. 특히 안구 건조를 덜어주는 눈 피드백은 <strong>평소 놓치던 중요한 건강 신호<strong>를 자연스럽게 알려줘서 가장 만족스러웠습니다."
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <p class="text-[11px] font-black text-slate-900">20대 대학생 수험생</p>
+                        <span class="text-[10px] bg-slate-100 px-2 py-0.5 rounded-full text-slate-500">장시간 모니터 유저</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section id="register" class="py-16 sm:py-20 bg-slate-950 text-white relative">
+        <div class="absolute -right-20 -bottom-20 w-[400px] h-[400px] bg-brand/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-3xl mx-auto px-5 text-center relative z-10">
+            <span class="text-xs font-black tracking-widest text-brand uppercase">Early Access Open</span>
+            <h3 class="text-2xl sm:text-3xl font-black mt-3 mb-4 leading-tight">
+                오늘 모니터 앞 8시간,<br>
+                RE:FLOW와 함께라면 지치지 않습니다.
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto mb-8 leading-relaxed font-medium">
+                베타 참여를 신청해 주시는 모든 분들께 정식 제품 첫 배포 참여 기회와 베타 테스트 기간 동안 모든 프리미엄 기능을 제한 없이 무료로 이용할 수 있는 특권을 드립니다.
+            </p>
+
+            <!-- Final Waitlist Form -->
+            <form onsubmit="handleWaitlistSubmit(event, 'footer')" class="max-w-md mx-auto space-y-4">
+                <div class="flex flex-col sm:flex-row gap-2">
+                    <input type="email" id="footer-email" required placeholder="이메일 주소를 입력해 주세요" class="flex-1 bg-slate-900 border border-slate-800 focus:border-brand focus:ring-4 focus:ring-brand/20 rounded-full px-5 py-3.5 text-xs sm:text-sm text-white placeholder-slate-500 outline-none transition-all font-medium">
+                    <button type="submit" class="bg-brand hover:bg-brand-dark text-slate-950 font-black px-6 py-3.5 rounded-full transition-all duration-300 text-xs sm:text-sm shadow-premium shrink-0 flex items-center justify-center gap-1.5">
+                        <span>무료 베타 참여하기</span>
+                        <i class="fa-solid fa-paper-plane text-[10px]"></i>
+                    </button>
+                </div>
+                
+                <div class="flex items-center justify-center gap-2">
+                    <input type="checkbox" id="privacy-agree" checked required class="w-3.5 h-3.5 rounded bg-slate-900 border-slate-800 text-brand focus:ring-brand">
+                    <label for="privacy-agree" class="text-[10px] text-slate-400 cursor-pointer select-none hover:text-slate-300">
+                        개인정보 수집 및 베타 런칭 소식 알림 수신에 동의합니다.
+                    </label>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-900 py-10 text-slate-600 text-xs">
+        <div class="max-w-5xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-full bg-brand flex items-center justify-center text-slate-950 text-[10px] font-black">RE:</div>
+                <span class="text-sm font-black text-white tracking-tight">RE:FLOW</span>
+            </div>
+            <p class="text-[10px]">© 2026 RE:FLOW. 이 서비스는 사용자의 제품 설치 및 수요 의도를 검증하기 위해 운영 중인 페이크 도어 시스템입니다.</p>
+        </div>
+    </footer>
+</div>
+
+<!-- Embedded Tally Style Survey & Thank You Landing State -->
+<div id="thank-you-screen" class="hidden min-h-screen bg-slate-950 text-white flex flex-col items-center justify-center py-20 px-5 relative overflow-hidden">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-xl w-full bg-slate-900/80 backdrop-blur-2xl border border-slate-800 p-8 sm:p-10 rounded-[2.5rem] shadow-premium text-center relative z-10">
+        
+        <!-- Stage 1: Initial Thank You Confirmation -->
+        <div id="thank-you-initial" class="block space-y-6">
+            <div class="w-16 h-16 rounded-full bg-brand/10 border border-brand/30 flex items-center justify-center text-brand text-3xl mx-auto character-bounce">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div class="space-y-2">
+                <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">🎉 신청이 완료되었습니다!</h2>
+                <p class="text-xs sm:text-sm text-slate-400 font-medium">
+                    무료 베타 참여 소식을 전송한 이메일로 가장 빠르게 배달해 드릴게요.
+                </p>
+            </div>
+            <div class="bg-slate-950 p-4 rounded-3xl border border-slate-800 text-left">
+                <p class="text-xs text-slate-300 leading-relaxed font-semibold">
+                    💡 <strong class="text-brand font-black">30초 추가 기여:</strong> 개발 우선순위를 직접 투표해 주시면 제작 흐름에 적극적으로 투입됩니다.
+                </p>
+            </div>
+            
+            <button onclick="startTallyStepFlow()" class="w-full bg-brand hover:bg-brand-dark text-slate-950 font-black py-4 rounded-full text-sm shadow-premium transition-all">
+                30초 제품 설문 시작하기
+            </button>
+        </div>
+
+        <!-- Stage 2: Native Step-by-Step Tally Survey Simulation -->
+        <div id="thank-you-survey-flow" class="hidden text-left space-y-6">
+            <!-- Progress indicator -->
+            <div class="flex items-center justify-between text-[11px] text-slate-500 font-extrabold tracking-wider">
+                <span>RE:FLOW BETA SURVEY</span>
+                <span id="survey-progress-num">1 / 5</span>
+            </div>
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                <div id="survey-progress-bar" class="bg-brand h-full w-[20%] transition-all duration-300"></div>
+            </div>
+
+            <!-- Questionnaire container -->
+            <div class="min-h-[220px] flex flex-col justify-center">
+                <!-- Question 1 -->
+                <div id="survey-q1" class="survey-question-block block space-y-4">
+                    <h3 class="text-base sm:text-lg font-black text-white">Q1. 하루 평균 모니터 사용 시간이 어떻게 되시나요?</h3>
+                    <div class="grid grid-cols-1 gap-2">
+                        <button onclick="selectSurveyOption(1, '4시간 이하')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
+                            4시간 이하
+                        </button>
+                        <button onclick="selectSurveyOption(1, '4시간 ~ 8시간')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
+                            4시간 ~ 8시간
+                        </button>
+                        <button onclick="selectSurveyOption(1, '8시간 이상')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
+                            8시간 이상
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div id="survey-q2" class="survey-question-block hidden space-y-4">
+                    <h3 class="text-base sm:text-lg font-black text-white">Q2. 장시간 작업 시 가장 잦고 깊게 겪는 문제는 무엇인가요?</h3>
+                    <div class="grid grid-cols-1 gap-2">
+                        <button onclick="selectSurveyOption(2, '거북목 / 척추 통증')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
+                            🐢 거북목 / 척추 통증
+                        </button>
+                        <button onclick="selectSurveyOption(2, '안구 건조 및 시선 피로')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
+                            👁️ 안구 건조 및 시선 피로
+                        </button>
+                        <button onclick="selectSurveyOption(2, '과부하 및 정신적 번아웃')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
+                            🔥 과부하 및 정신적 번아웃
+                        </button>
+                        <button onclick="selectSurveyOption(2, '의지 부족 및 집중력 유실')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
+                            💡 의지 부족 및 집중력 유실
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div id="survey-q3" class="survey-question-block hidden space-y-4">
+                    <h3 class="text-base sm:text-lg font-black text-white">Q3. RE:FLOW의 기능 중 가장 크게 기대되는 시스템은 무엇인가요?</h3>
+                    <div class="grid grid-cols-1 gap-2">
+                        <button onclick="selectSurveyOption(3, '자세 연동형 캐릭터 루카')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
+                            🧑‍💻 자세 연동형 캐릭터 루카
+                        </button>
+                        <button onclick="selectSurveyOption(3, '친구처럼 건네는 유머러스한 알림')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
+                            😄 친구처럼 건네는 유머러스한 알림
+                        </button>
+                        <button onclick="selectSurveyOption(3, '화면 디밍 기반 3분 강제 회복 패치')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
+                            ⚡ 화면 디밍 기반 3분 강제 회복 패치
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div id="survey-q4" class="survey-question-block hidden space-y-4">
+                    <h3 class="text-base sm:text-lg font-black text-white">Q4. 제품이 공식 출시되었을 때 실제로 사용할 의향이 있으신가요?</h3>
+                    <div class="grid grid-cols-1 gap-2">
+                        <button onclick="selectSurveyOption(4, '바로 설치해서 적극적으로 사용한다')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
+                            🚀 바로 설치해서 적극적으로 사용한다
+                        </button>
+                        <button onclick="selectSurveyOption(4, '무료 버전이 있다면 가볍게 검토한다')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
+                            ✨ 무료 버전이 있다면 가볍게 검토한다
+                        </button>
+                        <button onclick="selectSurveyOption(4, '팀원이나 친구들과 같이 도입해 본다')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
+                            👥 팀원이나 친구들과 같이 도입해 본다
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div id="survey-q5" class="survey-question-block hidden space-y-4">
+                    <h3 class="text-base sm:text-lg font-black text-white">Q5. 리플로우 팀에게 전하고 싶은 추가 의견이 있다면 편하게 적어주세요.</h3>
+                    <textarea id="survey-q5-text" placeholder="제안하고 싶은 기능, 기대 평을 자유롭게 적어주세요 (생략 가능)" class="w-full h-32 bg-slate-950 border border-slate-800 focus:border-brand focus:ring-2 focus:ring-brand/20 rounded-2xl p-4 text-xs sm:text-sm text-white outline-none resize-none transition-all font-medium"></textarea>
+                    
+                    <button onclick="submitFinalSurvey()" class="w-full bg-brand hover:bg-brand-dark text-slate-950 font-black py-4 rounded-full text-sm shadow-premium transition-all">
+                        설문 완성하고 제출하기
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stage 3: Completed Final Success Screen -->
+        <div id="thank-you-completed" class="hidden space-y-6">
+            <div class="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-3xl mx-auto character-bounce">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+            <div class="space-y-2">
+                <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">❤️ 설문 제출이 완료되었습니다!</h2>
+                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed font-medium">
+                    소중한 데이터 분석을 바탕으로, 더 친근하고 유용한 RE:FLOW 제품을 최우선 제작하여 가장 먼저 베타 소식으로 초대하겠습니다. 감사합니다!
+                </p>
+            </div>
+            <button onclick="returnToMainLander()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-extrabold py-3.5 rounded-full text-xs sm:text-sm transition-all">
+                메인 페이지로 돌아가기
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // 3D Character Visual Configurations based on User Image (Precise mapping of 3 stages used in main step flow)
+    const characterStates = {
+        focus: {
+            speech: "좋아! 지금 그대로 유지해요 💙",
+            badge: "FOCUSING",
+            badgeClass: "px-3.5 py-0.5 bg-brand text-slate-950 font-black text-[9px] rounded-full uppercase tracking-wider mb-1.5 inline-block",
+            msg: "차분하고 안정적인 깊은 집중 상태를 유지하고 있습니다.",
+            // SVG Pose properties
+            faceTransform: "translate(0, 0)",
+            eyes: `
+                <!-- Left Eye -->
+                <circle cx="86" cy="77" r="4.5" fill="#FFFFFF" />
+                <circle cx="86" cy="77" r="3" fill="url(#eye-iris)" />
+                <circle cx="84.8" cy="75.8" r="1.1" fill="#FFFFFF" />
+                <!-- Right Eye -->
+                <circle cx="114" cy="77" r="4.5" fill="#FFFFFF" />
+                <circle cx="114" cy="77" r="3" fill="url(#eye-iris)" />
+                <circle cx="112.8" cy="75.8" r="1.1" fill="#FFFFFF" />
+            `,
+            eyebrows: `
+                <path d="M 78 71 Q 84 68 89 71" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" />
+                <path d="M 122 71 Q 116 68 111 71" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" />
+            `,
+            mouth: "M 94 92 Q 100 95 106 92",
+            blush: "0.25",
+            sweat: false,
+            spine: "0",
+            torsoTransform: "translate(0, 0)",
+            accessoryMug: "1", // blue smil mug
+            accessoryCoffee: "0",
+            accessoryPlant: "0",
+            sparksId: "sparks-focus"
+        },
+        overheat: {
+            speech: "잠깐만요! 과부하 상태예요 😟",
+            badge: "OVERHEATED",
+            badgeClass: "px-3.5 py-0.5 bg-red-500 text-white animate-pulse font-black text-[9px] rounded-full uppercase tracking-wider mb-1.5 inline-block",
+            msg: "피로가 누적되어 시선이 흐려지고 주의 집중력이 급감했습니다.",
+            // SVG Pose properties (Leaning head on hand tilted slightly)
+            faceTransform: "translate(-3, 4) rotate(-3)",
+            eyes: `
+                <!-- Drooping tired eyes -->
+                <path d="M 81 79 Q 86 76 91 79" stroke="#1E1715" stroke-width="3.2" stroke-linecap="round" fill="none" />
+                <path d="M 109 79 Q 114 76 119 79" stroke="#1E1715" stroke-width="3.2" stroke-linecap="round" fill="none" />
+                <circle cx="86" cy="80.5" r="1.5" fill="#1E1715" />
+                <circle cx="114" cy="80.5" r="1.5" fill="#1E1715" />
+            `,
+            eyebrows: `
+                <!-- Worried eyebrows -->
+                <path d="M 79 73 Q 84 73 88 70" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" />
+                <path d="M 121 73 Q 116 73 112 70" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" />
+            `,
+            mouth: "M 95 94 Q 100 91 105 94", // Drooping mouth
+            blush: "0.1",
+            sweat: true,
+            spine: "0",
+            torsoTransform: "translate(-2, 2)",
+            accessoryMug: "0",
+            accessoryCoffee: "1", // coffee sleeve cup
+            accessoryPlant: "0",
+            sparksId: "sparks-overheat"
+        },
+        posture: {
+            speech: "목이 앞으로 나와있어요 😟",
+            badge: "POOR POSTURE",
+            badgeClass: "px-3.5 py-0.5 bg-amber-500 text-slate-950 font-black text-[9px] rounded-full uppercase tracking-wider mb-1.5 inline-block",
+            msg: "목과 어깨가 긴장 상태에 들어갔습니다. 고개를 가볍게 들어주세요.",
+            // SVG Pose properties (Slightly slumped head looking down)
+            faceTransform: "translate(-10, 16) rotate(-4)",
+            eyes: `
+                <ellipse cx="82" cy="79" rx="3.5" ry="4.2" fill="#FFFFFF" />
+                <circle cx="82" cy="79" r="2.2" fill="#1E1715" />
+                <ellipse cx="110" cy="79" rx="3.5" ry="4.2" fill="#FFFFFF" />
+                <circle cx="110" cy="79" r="2.2" fill="#1E1715" />
+            `,
+            eyebrows: `
+                <path d="M 76 72 Q 82 75 87 74" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" />
+                <path d="M 118 72 Q 112 75 107 74" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" />
+            `,
+            mouth: "M 93 93 L 103 93",
+            blush: "0.15",
+            sweat: false,
+            spine: "1", // show curved spine line
+            torsoTransform: "translate(-4, 6) rotate(-2)",
+            accessoryMug: "0",
+            accessoryCoffee: "0",
+            accessoryPlant: "1", // plant pot visible
+            sparksId: "sparks-posture"
+        }
+    };
+
+    function setLukaState(stateKey) {
+        const state = characterStates[stateKey];
+        if (!state) return;
+
+        // 1. Update text elements and speech bubble
+        const speechText = document.getElementById('speech-text');
+        if (speechText) speechText.innerText = state.speech;
+
+        // 2. Transform SVG elements inside SVG framework
+        document.getElementById('char-clay-face').setAttribute('transform', state.faceTransform);
+        document.getElementById('char-clay-hair').setAttribute('transform', state.faceTransform);
+        document.getElementById('char-clay-torso').setAttribute('transform', state.torsoTransform);
+
+        // Update eyes / mouth / eyebrows
+        document.getElementById('clay-eyes').innerHTML = state.eyes;
+        document.getElementById('clay-eyebrows').innerHTML = state.eyebrows;
+        document.getElementById('clay-mouth').setAttribute('d', state.mouth);
+        
+        // Blush updates
+        document.getElementById('clay-cheek-l').setAttribute('opacity', state.blush);
+        document.getElementById('clay-cheek-r').setAttribute('opacity', state.blush);
+        
+        // Sweat drops (Safely guarded to prevent null reference errors)
+        const sweat = document.getElementById('char-sweat');
+        if (sweat) {
+            if (state.sweat) {
+                sweat.classList.remove('opacity-0');
+                sweat.classList.add('opacity-100');
+            } else {
+                sweat.classList.add('opacity-0');
+                sweat.classList.remove('opacity-100');
+            }
+        }
+
+        // Spine curve helper (Only in posture warning)
+        const spine = document.getElementById('spine-guide');
+        if (spine) {
+            if (state.spine === "1") {
+                spine.setAttribute('opacity', '1');
+            } else {
+                spine.setAttribute('opacity', '0');
+            }
+        }
+
+        // Accessories toggle
+        document.getElementById('accessory-mug').setAttribute('opacity', state.accessoryMug);
+        document.getElementById('accessory-coffee').setAttribute('opacity', state.accessoryCoffee);
+        document.getElementById('accessory-plant').setAttribute('opacity', state.accessoryPlant);
+
+        // Highlight active background spark particles
+        ['sparks-focus', 'sparks-overheat', 'sparks-posture'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                if (id === state.sparksId) {
+                    el.classList.remove('opacity-0');
+                    el.classList.add('opacity-100');
+                } else {
+                    el.classList.add('opacity-0');
+                    el.classList.remove('opacity-100');
+                }
+            }
+        });
+
+        // Apply badge classes
+        const badge = document.getElementById('char-badge');
+        badge.innerText = state.badge;
+        badge.className = state.badgeClass;
+
+        document.getElementById('char-message').innerText = state.msg;
+
+        // Toggle focus state switch highlight in button controllers
+        ['focus', 'overheat', 'posture'].forEach(k => {
+            const btn = document.getElementById(`btn-${k}`);
+            if (k === stateKey) {
+                btn.className = "text-[10px] font-black px-3.5 py-2 rounded-full transition-all bg-slate-900 text-white shadow-sm";
+            } else {
+                btn.className = "text-[10px] font-black px-3.5 py-2 rounded-full transition-all bg-slate-100 text-slate-600 hover:text-brand";
+            }
+        });
+    }
+
+    // Sound alert tone with Tone.js
+    let synth = null;
+    function playAlertSound(toastText) {
+        if (!synth) {
+            synth = new Tone.PolySynth(Tone.Synth).toDestination();
+            synth.set({
+                oscillator: { type: 'sine' },
+                envelope: { attack: 0.04, decay: 0.08, sustain: 0.2, release: 0.8 }
+            });
+        }
+        
+        try {
+            Tone.start();
+            const now = Tone.now();
+            synth.triggerAttackRelease("E5", "16n", now);
+            synth.triggerAttackRelease("A5", "16n", now + 0.06);
+        } catch(e) {}
+
+        const output = document.getElementById('alert-toast-output');
+        output.innerText = `💬 "${toastText}"`;
+        output.classList.add('text-brand', 'scale-105');
+        setTimeout(() => {
+            output.classList.remove('text-brand', 'scale-105');
+        }, 1500);
+    }
+
+    // 3-min reset dimming simulation
+    let dimmerInterval = null;
+    let dimmerActive = false;
+
+    function toggleDimmerSimulation() {
+        const screen = document.getElementById('dimmer-demo-screen');
+        const btn = document.getElementById('dimmer-action-btn');
+        const title = document.getElementById('dimmer-title');
+        const clock = document.getElementById('dimmer-clock');
+
+        if (dimmerActive) {
+            clearInterval(dimmerInterval);
+            dimmerActive = false;
+            title.innerText = '"목과 어깨가 긴장 상태에 들어갔어요. 잠시 눈을 식혀볼까요?"';
+            clock.innerText = "03:00";
+            btn.innerText = "회복 디밍 체험하기";
+            btn.className = "bg-brand text-slate-950 font-extrabold text-[10px] px-4 py-2 rounded-full transition-all shadow-premium hover:bg-brand-dark";
+        } else {
+            dimmerActive = true;
+            btn.innerText = "시뮬레이션 취소";
+            btn.className = "bg-slate-800 text-slate-400 font-extrabold text-[10px] px-4 py-2 rounded-full transition-all";
+            
+            let time = 5;
+            clock.innerText = "00:05";
+            title.innerText = "지그시 눈을 감고 눈 세포를 안심시키세요 👁️";
+
+            dimmerInterval = setInterval(() => {
+                time--;
+                clock.innerText = `00:0${time}`;
+                if (time === 3) {
+                    title.innerText = "가슴을 활짝 열어 어깨를 천천히 뒤로 회전하세요 🧘‍♀️";
+                }
+                if (time <= 0) {
+                    clearInterval(dimmerInterval);
+                    dimmerActive = false;
+                    clock.innerText = "03:00";
+                    title.innerText = "🔋 회복 완료! 집중력이 100% 재충전되었습니다.";
+                    btn.innerText = "다시 체험해보기";
+                    btn.className = "bg-brand text-slate-950 font-extrabold text-[10px] px-4 py-2 rounded-full transition-all shadow-premium hover:bg-brand-dark";
+                }
+            }, 1000);
+        }
+    }
+
+    // Temporary survey handler variables
+    let userEmailAddress = "";
+    let surveyAnswers = {
+        email: "",
+        q1: "",
+        q2: "",
+        q3: "",
+        q4: "",
+        q5: ""
+    };
+
+    function handleWaitlistSubmit(event, source) {
+        event.preventDefault();
+        const inputField = document.getElementById(`${source}-email`);
+        const emailVal = inputField ? inputField.value.trim() : "";
+        if (!emailVal) return;
+
+        userEmailAddress = emailVal;
+        surveyAnswers.email = emailVal;
+
+        let list = JSON.parse(localStorage.getItem('reflow_beta_waitlist')) || [];
+        if (!list.includes(emailVal)) {
+            list.push(emailVal);
+            localStorage.setItem('reflow_beta_waitlist', JSON.stringify(list));
+        }
+
+        document.getElementById('main-lander-content').classList.add('hidden');
+        document.getElementById('thank-you-screen').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    let currentSurveyStep = 1;
+
+    function startTallyStepFlow() {
+        document.getElementById('thank-you-initial').classList.add('hidden');
+        document.getElementById('thank-you-survey-flow').classList.remove('hidden');
+    }
+
+    function selectSurveyOption(step, selectedOptionValue) {
+        surveyAnswers[`q${step}`] = selectedOptionValue;
+        document.getElementById(`survey-q${step}`).classList.add('hidden');
+        
+        currentSurveyStep = step + 1;
+        const progressPercent = (currentSurveyStep / 5) * 100;
+        document.getElementById('survey-progress-bar').style.width = `${progressPercent}%`;
+        document.getElementById('survey-progress-num').innerText = `${currentSurveyStep} / 5`;
+
+        const nextStepBlock = document.getElementById(`survey-q${currentSurveyStep}`);
+        if (nextStepBlock) {
+            nextStepBlock.classList.remove('hidden');
+        }
+    }
+
+    function submitFinalSurvey() {
+        const textVal = document.getElementById('survey-q5-text').value.trim();
+        surveyAnswers.q5 = textVal;
+
+        let feedbackLogs = JSON.parse(localStorage.getItem('reflow_feedback_logs')) || [];
+        feedbackLogs.push(surveyAnswers);
+        localStorage.setItem('reflow_feedback_logs', JSON.stringify(feedbackLogs));
+
+        document.getElementById('thank-you-survey-flow').classList.add('hidden');
+        document.getElementById('thank-you-completed').classList.remove('hidden');
+    }
+
+    function returnToMainLander() {
+        currentSurveyStep = 1;
+        document.getElementById('survey-progress-bar').style.width = "20%";
+        document.getElementById('survey-progress-num').innerText = "1 / 5";
+
+        document.getElementById('thank-you-completed').classList.add('hidden');
+        document.getElementById('thank-you-initial').classList.remove('hidden');
+        document.getElementById('thank-you-screen').classList.add('hidden');
+        document.getElementById('main-lander-content').classList.remove('hidden');
+
+        for (let i = 1; i <= 5; i++) {
+            const qBlock = document.getElementById(`survey-q${i}`);
+            if (i === 1) {
+                qBlock.classList.remove('hidden');
+            } else {
+                qBlock.classList.add('hidden');
+            }
+        }
+        document.getElementById('survey-q5-text').value = "";
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
