@@ -713,7 +713,6 @@
 
     <div class="max-w-xl w-full bg-slate-900/80 backdrop-blur-2xl border border-slate-800 p-8 sm:p-10 rounded-[2.5rem] shadow-premium text-center relative z-10">
         
-        <!-- Stage 1: Initial Thank You Confirmation -->
         <div id="thank-you-initial" class="block space-y-6">
             <div class="w-16 h-16 rounded-full bg-brand/10 border border-brand/30 flex items-center justify-center text-brand text-3xl mx-auto character-bounce">
                 <i class="fa-solid fa-circle-check"></i>
@@ -721,7 +720,7 @@
             <div class="space-y-2">
                 <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">🎉 신청이 완료되었습니다!</h2>
                 <p class="text-xs sm:text-sm text-slate-400 font-medium">
-                    무료 베타 참여 소식을 전송한 이메일로 가장 빠르게 배달해 드릴게요.
+                    무료 베타 우선 초대장과 테스트 전용 설치 링크를 전송한 이메일로 가장 빠르게 배달해 드릴게요.
                 </p>
             </div>
             <div class="bg-slate-950 p-4 rounded-3xl border border-slate-800 text-left">
@@ -735,91 +734,86 @@
             </button>
         </div>
 
-        <!-- Stage 2: Native Step-by-Step Tally Survey Simulation -->
         <div id="thank-you-survey-flow" class="hidden text-left space-y-6">
-            <!-- Progress indicator -->
             <div class="flex items-center justify-between text-[11px] text-slate-500 font-extrabold tracking-wider">
                 <span>RE:FLOW BETA SURVEY</span>
-                <span id="survey-progress-num">1 / 5</span>
+                <span id="survey-progress-num">1 / 7</span>
             </div>
-            <!-- Progress Bar -->
             <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                <div id="survey-progress-bar" class="bg-brand h-full w-[20%] transition-all duration-300"></div>
+                <div id="survey-progress-bar" class="bg-brand h-full w-[14.2%] transition-all duration-300"></div>
             </div>
 
-            <!-- Questionnaire container -->
-            <div class="min-h-[220px] flex flex-col justify-center">
-                <!-- Question 1 -->
+            <div class="min-h-[240px] flex flex-col justify-center">
                 <div id="survey-q1" class="survey-question-block block space-y-4">
-                    <h3 class="text-base sm:text-lg font-black text-white">Q1. 하루 평균 모니터 사용 시간이 어떻게 되시나요?</h3>
+                    <h3 class="text-base sm:text-lg font-black text-white">Q1. 현재 어떤 일을 하고 계신가요?</h3>
                     <div class="grid grid-cols-1 gap-2">
-                        <button onclick="selectSurveyOption(1, '4시간 이하')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
-                            4시간 이하
-                        </button>
-                        <button onclick="selectSurveyOption(1, '4시간 ~ 8시간')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
-                            4시간 ~ 8시간
-                        </button>
-                        <button onclick="selectSurveyOption(1, '8시간 이상')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
-                            8시간 이상
-                        </button>
+                        <button onclick="handleQ1Option('대학생')" class="survey-option-btn q1-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">대학생</button>
+                        <button onclick="handleQ1Option('취준생')" class="survey-option-btn q1-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">취준생</button>
+                        <button onclick="handleQ1Option('직장인')" class="survey-option-btn q1-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">직장인</button>
+                        <button onclick="handleQ1Option('프리랜서')" class="survey-option-btn q1-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">프리랜서</button>
+                        <button onclick="handleQ1Option('기타')" class="survey-option-btn q1-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">기타 (직접 입력)</button>
+                    </div>
+                    <div id="q1-etc-container" class="hidden pt-2 space-y-2">
+                        <input type="text" id="q1-etc-input" placeholder="소속이나 하시는 일을 입력해 주세요" class="w-full bg-slate-950 border border-slate-800 focus:border-brand focus:ring-2 focus:ring-brand/20 rounded-xl p-3.5 text-xs sm:text-sm text-white outline-none transition-all font-medium">
+                        <button onclick="submitQ1Etc()" class="bg-brand text-slate-950 font-bold text-xs px-4 py-2 rounded-full shadow-md hover:bg-brand-dark transition-all">확인</button>
                     </div>
                 </div>
 
-                <!-- Question 2 -->
                 <div id="survey-q2" class="survey-question-block hidden space-y-4">
-                    <h3 class="text-base sm:text-lg font-black text-white">Q2. 장시간 작업 시 가장 잦고 깊게 겪는 문제는 무엇인가요?</h3>
+                    <h3 class="text-base sm:text-lg font-black text-white">Q2. 어떤 작업을 할 때 주로 몰입하시나요?</h3>
                     <div class="grid grid-cols-1 gap-2">
-                        <button onclick="selectSurveyOption(2, '거북목 / 척추 통증')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
-                            🐢 거북목 / 척추 통증
-                        </button>
-                        <button onclick="selectSurveyOption(2, '안구 건조 및 시선 피로')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
-                            👁️ 안구 건조 및 시선 피로
-                        </button>
-                        <button onclick="selectSurveyOption(2, '과부하 및 정신적 번아웃')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
-                            🔥 과부하 및 정신적 번아웃
-                        </button>
-                        <button onclick="selectSurveyOption(2, '의지 부족 및 집중력 유실')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
-                            💡 의지 부족 및 집중력 유실
-                        </button>
+                        <button onclick="handleQ2Option('공부/과제')" class="survey-option-btn q2-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">📚 공부/과제</button>
+                        <button onclick="selectSurveyOption(2, '코딩/개발')" class="survey-option-btn q2-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">💻 코딩/개발</button>
+                        <button onclick="selectSurveyOption(2, '디자인/창작')" class="survey-option-btn q2-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">🎨 디자인/창작</button>
+                        <button onclick="selectSurveyOption(2, '일반사무/문서작업')" class="survey-option-btn q2-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">📝 일반 사무/문서작업</button>
+                        <button onclick="handleQ2Option('기타')" class="survey-option-btn q2-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">✨ 기타 (직접 입력)</button>
+                    </div>
+                    <div id="q2-etc-container" class="hidden pt-2 space-y-2">
+                        <input type="text" id="q2-etc-input" placeholder="어떤 몰입 작업을 하시는지 입력해 주세요" class="w-full bg-slate-950 border border-slate-800 focus:border-brand focus:ring-2 focus:ring-brand/20 rounded-xl p-3.5 text-xs sm:text-sm text-white outline-none transition-all font-medium">
+                        <button onclick="submitQ2Etc()" class="bg-brand text-slate-950 font-bold text-xs px-4 py-2 rounded-full shadow-md hover:bg-brand-dark transition-all">확인</button>
                     </div>
                 </div>
 
-                <!-- Question 3 -->
                 <div id="survey-q3" class="survey-question-block hidden space-y-4">
-                    <h3 class="text-base sm:text-lg font-black text-white">Q3. RE:FLOW의 기능 중 가장 크게 기대되는 시스템은 무엇인가요?</h3>
+                    <h3 class="text-base sm:text-lg font-black text-white">Q3. 하루 평균 모니터 사용 시간이 어떻게 되시나요?</h3>
                     <div class="grid grid-cols-1 gap-2">
-                        <button onclick="selectSurveyOption(3, '자세 연동형 캐릭터 루카')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
-                            🧑‍💻 자세 연동형 캐릭터 루카
-                        </button>
-                        <button onclick="selectSurveyOption(3, '친구처럼 건네는 유머러스한 알림')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
-                            😄 친구처럼 건네는 유머러스한 알림
-                        </button>
-                        <button onclick="selectSurveyOption(3, '화면 디밍 기반 3분 강제 회복 패치')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
-                            ⚡ 화면 디밍 기반 3분 강제 회복 패치
-                        </button>
+                        <button onclick="selectSurveyOption(3, '4시간 이하')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">4시간 이하</button>
+                        <button onclick="selectSurveyOption(3, '4시간 ~ 8시간')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">4시간 ~ 8시간</button>
+                        <button onclick="selectSurveyOption(3, '8시간 이상')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">8시간 이상</button>
                     </div>
                 </div>
 
-                <!-- Question 4 -->
                 <div id="survey-q4" class="survey-question-block hidden space-y-4">
-                    <h3 class="text-base sm:text-lg font-black text-white">Q4. 제품이 공식 출시되었을 때 실제로 사용할 의향이 있으신가요?</h3>
+                    <h3 class="text-base sm:text-lg font-black text-white">Q4. 장시간 작업 시 가장 잦고 깊게 겪는 문제는 무엇인가요?</h3>
                     <div class="grid grid-cols-1 gap-2">
-                        <button onclick="selectSurveyOption(4, '바로 설치해서 적극적으로 사용한다')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
-                            🚀 바로 설치해서 적극적으로 사용한다
-                        </button>
-                        <button onclick="selectSurveyOption(4, '무료 버전이 있다면 가볍게 검토한다')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
-                            ✨ 무료 버전이 있다면 가볍게 검토한다
-                        </button>
-                        <button onclick="selectSurveyOption(4, '팀원이나 친구들과 같이 도입해 본다')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">
-                            👥 팀원이나 친구들과 같이 도입해 본다
-                        </button>
+                        <button onclick="selectSurveyOption(4, '거북목 / 척추 통증')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">🐢 거북목 / 척추 통증</button>
+                        <button onclick="selectSurveyOption(4, '안구 건조 및 시선 피로')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">👁️ 안구 건조 및 시선 피로</button>
+                        <button onclick="selectSurveyOption(4, '과부하 및 정신적 번아웃')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">🔥 과부하 및 정신적 번아웃</button>
+                        <button onclick="selectSurveyOption(4, '의지 부족 및 집중력 유실')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">💡 의지 부족 및 집중력 유실</button>
                     </div>
                 </div>
 
-                <!-- Question 5 -->
                 <div id="survey-q5" class="survey-question-block hidden space-y-4">
-                    <h3 class="text-base sm:text-lg font-black text-white">Q5. 리플로우 팀에게 전하고 싶은 추가 의견이 있다면 편하게 적어주세요.</h3>
-                    <textarea id="survey-q5-text" placeholder="제안하고 싶은 기능, 기대 평을 자유롭게 적어주세요 (생략 가능)" class="w-full h-32 bg-slate-950 border border-slate-800 focus:border-brand focus:ring-2 focus:ring-brand/20 rounded-2xl p-4 text-xs sm:text-sm text-white outline-none resize-none transition-all font-medium"></textarea>
+                    <h3 class="text-base sm:text-lg font-black text-white">Q5. RE:FLOW의 기능 중 가장 크게 기대되는 시스템은 무엇인가요?</h3>
+                    <div class="grid grid-cols-1 gap-2">
+                        <button onclick="selectSurveyOption(5, '자세 연동형 캐릭터 루카')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">🧑‍💻 자세 연동형 캐릭터 루카</button>
+                        <button onclick="selectSurveyOption(5, '친구처럼 건네는 유머러스한 알림')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">😄 친구처럼 건네는 유머러스한 알림</button>
+                        <button onclick="selectSurveyOption(5, '화면 디밍 기반 3분 강제 회복 패치')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">⚡ 화면 디밍 기반 3분 강제 회복 패치</button>
+                    </div>
+                </div>
+
+                <div id="survey-q6" class="survey-question-block hidden space-y-4">
+                    <h3 class="text-base sm:text-lg font-black text-white">Q6. 제품이 공식 출시되었을 때 실제로 사용할 의향이 있으신가요?</h3>
+                    <div class="grid grid-cols-1 gap-2">
+                        <button onclick="selectSurveyOption(6, '바로 설치해서 적극적으로 사용한다')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">🚀 바로 설치해서 적극적으로 사용한다</button>
+                        <button onclick="selectSurveyOption(6, '무료 버전이 있다면 가볍게 검토한다')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">✨ 무료 버전이 있다면 가볍게 검토한다</button>
+                        <button onclick="selectSurveyOption(6, '팀원이나 친구들과 같이 도입해 본다')" class="survey-option-btn w-full bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-brand/50 text-left text-xs sm:text-sm font-semibold p-4 rounded-2xl transition-all">👥 팀원이나 친구들과 같이 도입해 본다</button>
+                    </div>
+                </div>
+
+                <div id="survey-q7" class="survey-question-block hidden space-y-4">
+                    <h3 class="text-base sm:text-lg font-black text-white">Q7. 리플로우 팀에게 전하고 싶은 추가 의견이 있다면 편하게 적어주세요.</h3>
+                    <textarea id="survey-q7-text" placeholder="제안하고 싶은 기능, 기대 평을 자유롭게 적어주세요 (생략 가능)" class="w-full h-32 bg-slate-950 border border-slate-800 focus:border-brand focus:ring-2 focus:ring-brand/20 rounded-2xl p-4 text-xs sm:text-sm text-white outline-none resize-none transition-all font-medium"></textarea>
                     
                     <button onclick="submitFinalSurvey()" class="w-full bg-brand hover:bg-brand-dark text-slate-950 font-black py-4 rounded-full text-sm shadow-premium transition-all">
                         설문 완성하고 제출하기
@@ -828,13 +822,12 @@
             </div>
         </div>
 
-        <!-- Stage 3: Completed Final Success Screen -->
         <div id="thank-you-completed" class="hidden space-y-6">
             <div class="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-3xl mx-auto character-bounce">
                 <i class="fa-solid fa-heart"></i>
             </div>
             <div class="space-y-2">
-                <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">설문 제출이 완료되었습니다!🩵</h2>
+                <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">❤️ 설문 제출이 완료되었습니다!</h2>
                 <p class="text-xs sm:text-sm text-slate-400 leading-relaxed font-medium">
                     소중한 데이터 분석을 바탕으로, 더 친근하고 유용한 RE:FLOW 제품을 최우선 제작하여 가장 먼저 베타 소식으로 초대하겠습니다. 감사합니다!
                 </p>
@@ -848,317 +841,243 @@
 </div>
 
 <script>
-    // 3D Character Visual Configurations based on User Image (Precise mapping of 3 stages used in main step flow)
+    // 🚨 본인의 구글 웹 앱 URL 주소 (기존 주소 그대로 연동 완료)
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyBVU2-CfrJMz2a3huAQ95Vuu1G7tH640ibHXfepRlkbbEkQZfOIsMxLZQaX6QLJ-wN1A/exec"; 
+
+    // 3D Character Configurations (기존 캐릭터 뼈대 완벽 유지)
     const characterStates = {
         focus: {
             speech: "좋아! 지금 그대로 유지해요 💙",
             badge: "FOCUSING",
             badgeClass: "px-3.5 py-0.5 bg-brand text-slate-950 font-black text-[9px] rounded-full uppercase tracking-wider mb-1.5 inline-block",
             msg: "차분하고 안정적인 깊은 집중 상태를 유지하고 있습니다.",
-            // SVG Pose properties
             faceTransform: "translate(0, 0)",
-            eyes: `
-                <!-- Left Eye -->
-                <circle cx="86" cy="77" r="4.5" fill="#FFFFFF" />
-                <circle cx="86" cy="77" r="3" fill="url(#eye-iris)" />
-                <circle cx="84.8" cy="75.8" r="1.1" fill="#FFFFFF" />
-                <!-- Right Eye -->
-                <circle cx="114" cy="77" r="4.5" fill="#FFFFFF" />
-                <circle cx="114" cy="77" r="3" fill="url(#eye-iris)" />
-                <circle cx="112.8" cy="75.8" r="1.1" fill="#FFFFFF" />
-            `,
-            eyebrows: `
-                <path d="M 78 71 Q 84 68 89 71" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" />
-                <path d="M 122 71 Q 116 68 111 71" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" />
-            `,
+            eyes: `<circle cx="86" cy="77" r="4.5" fill="#FFFFFF" /><circle cx="86" cy="77" r="3" fill="url(#eye-iris)" /><circle cx="84.8" cy="75.8" r="1.1" fill="#FFFFFF" /><circle cx="114" cy="77" r="4.5" fill="#FFFFFF" /><circle cx="114" cy="77" r="3" fill="url(#eye-iris)" /><circle cx="112.8" cy="75.8" r="1.1" fill="#FFFFFF" />`,
+            eyebrows: `<path d="M 78 71 Q 84 68 89 71" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" /><path d="M 122 71 Q 116 68 111 71" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" />`,
             mouth: "M 94 92 Q 100 95 106 92",
-            blush: "0.25",
-            sweat: false,
-            spine: "0",
-            torsoTransform: "translate(0, 0)",
-            accessoryMug: "1", // blue smil mug
-            accessoryCoffee: "0",
-            accessoryPlant: "0",
-            sparksId: "sparks-focus"
+            blush: "0.25", sweat: false, spine: "0", torsoTransform: "translate(0, 0)", accessoryMug: "1", accessoryCoffee: "0", accessoryPlant: "0", sparksId: "sparks-focus"
         },
         overheat: {
             speech: "잠깐만요! 과부하 상태예요 😟",
             badge: "OVERHEATED",
             badgeClass: "px-3.5 py-0.5 bg-red-500 text-white animate-pulse font-black text-[9px] rounded-full uppercase tracking-wider mb-1.5 inline-block",
             msg: "피로가 누적되어 시선이 흐려지고 주의 집중력이 급감했습니다.",
-            // SVG Pose properties (Leaning head on hand tilted slightly)
             faceTransform: "translate(-3, 4) rotate(-3)",
-            eyes: `
-                <!-- Drooping tired eyes -->
-                <path d="M 81 79 Q 86 76 91 79" stroke="#1E1715" stroke-width="3.2" stroke-linecap="round" fill="none" />
-                <path d="M 109 79 Q 114 76 119 79" stroke="#1E1715" stroke-width="3.2" stroke-linecap="round" fill="none" />
-                <circle cx="86" cy="80.5" r="1.5" fill="#1E1715" />
-                <circle cx="114" cy="80.5" r="1.5" fill="#1E1715" />
-            `,
-            eyebrows: `
-                <!-- Worried eyebrows -->
-                <path d="M 79 73 Q 84 73 88 70" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" />
-                <path d="M 121 73 Q 116 73 112 70" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" />
-            `,
-            mouth: "M 95 94 Q 100 91 105 94", // Drooping mouth
-            blush: "0.1",
-            sweat: true,
-            spine: "0",
-            torsoTransform: "translate(-2, 2)",
-            accessoryMug: "0",
-            accessoryCoffee: "1", // coffee sleeve cup
-            accessoryPlant: "0",
-            sparksId: "sparks-overheat"
+            eyes: `<path d="M 81 79 Q 86 76 91 79" stroke="#1E1715" stroke-width="3.2" stroke-linecap="round" fill="none" /><path d="M 109 79 Q 114 76 119 79" stroke="#1E1715" stroke-width="3.2" stroke-linecap="round" fill="none" /><circle cx="86" cy="80.5" r="1.5" fill="#1E1715" /><circle cx="114" cy="80.5" r="1.5" fill="#1E1715" />`,
+            eyebrows: `<path d="M 79 73 Q 84 73 88 70" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" /><path d="M 121 73 Q 116 73 112 70" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" />`,
+            mouth: "M 95 94 Q 100 91 105 94",
+            blush: "0.1", sweat: true, spine: "0", torsoTransform: "translate(-2, 2)", accessoryMug: "0", accessoryCoffee: "1", accessoryPlant: "0", sparksId: "sparks-overheat"
         },
         posture: {
             speech: "목이 앞으로 나와있어요 😟",
             badge: "POOR POSTURE",
             badgeClass: "px-3.5 py-0.5 bg-amber-500 text-slate-950 font-black text-[9px] rounded-full uppercase tracking-wider mb-1.5 inline-block",
             msg: "목과 어깨가 긴장 상태에 들어갔습니다. 고개를 가볍게 들어주세요.",
-            // SVG Pose properties (Slightly slumped head looking down)
             faceTransform: "translate(-10, 16) rotate(-4)",
-            eyes: `
-                <ellipse cx="82" cy="79" rx="3.5" ry="4.2" fill="#FFFFFF" />
-                <circle cx="82" cy="79" r="2.2" fill="#1E1715" />
-                <ellipse cx="110" cy="79" rx="3.5" ry="4.2" fill="#FFFFFF" />
-                <circle cx="110" cy="79" r="2.2" fill="#1E1715" />
-            `,
-            eyebrows: `
-                <path d="M 76 72 Q 82 75 87 74" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" />
-                <path d="M 118 72 Q 112 75 107 74" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" />
-            `,
+            eyes: `<ellipse cx="82" cy="79" rx="3.5" ry="4.2" fill="#FFFFFF" /><circle cx="82" cy="79" r="2.2" fill="#1E1715" /><ellipse cx="110" cy="79" rx="3.5" ry="4.2" fill="#FFFFFF" /><circle cx="110" cy="79" r="2.2" fill="#1E1715" />`,
+            eyebrows: `<path d="M 76 72 Q 82 75 87 74" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" /><path d="M 118 72 Q 112 75 107 74" stroke="#1E1715" stroke-width="2.5" stroke-linecap="round" fill="none" />`,
             mouth: "M 93 93 L 103 93",
-            blush: "0.15",
-            sweat: false,
-            spine: "1", // show curved spine line
-            torsoTransform: "translate(-4, 6) rotate(-2)",
-            accessoryMug: "0",
-            accessoryCoffee: "0",
-            accessoryPlant: "1", // plant pot visible
-            sparksId: "sparks-posture"
+            blush: "0.15", sweat: false, spine: "1", torsoTransform: "translate(-4, 6) rotate(-2)", accessoryMug: "0", accessoryCoffee: "0", accessoryPlant: "1", sparksId: "sparks-posture"
         }
     };
 
     function setLukaState(stateKey) {
         const state = characterStates[stateKey];
         if (!state) return;
-
-        // 1. Update text elements and speech bubble
         const speechText = document.getElementById('speech-text');
         if (speechText) speechText.innerText = state.speech;
-
-        // 2. Transform SVG elements inside SVG framework
         document.getElementById('char-clay-face').setAttribute('transform', state.faceTransform);
         document.getElementById('char-clay-hair').setAttribute('transform', state.faceTransform);
         document.getElementById('char-clay-torso').setAttribute('transform', state.torsoTransform);
-
-        // Update eyes / mouth / eyebrows
         document.getElementById('clay-eyes').innerHTML = state.eyes;
         document.getElementById('clay-eyebrows').innerHTML = state.eyebrows;
         document.getElementById('clay-mouth').setAttribute('d', state.mouth);
-        
-        // Blush updates
         document.getElementById('clay-cheek-l').setAttribute('opacity', state.blush);
         document.getElementById('clay-cheek-r').setAttribute('opacity', state.blush);
-        
-        // Sweat drops (Safely guarded to prevent null reference errors)
         const sweat = document.getElementById('char-sweat');
         if (sweat) {
-            if (state.sweat) {
-                sweat.classList.remove('opacity-0');
-                sweat.classList.add('opacity-100');
-            } else {
-                sweat.classList.add('opacity-0');
-                sweat.classList.remove('opacity-100');
-            }
+            if (state.sweat) { sweat.classList.remove('opacity-0'); sweat.classList.add('opacity-100'); }
+            else { sweat.classList.add('opacity-0'); sweat.classList.remove('opacity-100'); }
         }
-
-        // Spine curve helper (Only in posture warning)
         const spine = document.getElementById('spine-guide');
         if (spine) {
-            if (state.spine === "1") {
-                spine.setAttribute('opacity', '1');
-            } else {
-                spine.setAttribute('opacity', '0');
-            }
+            if (state.spine === "1") { spine.setAttribute('opacity', '1'); }
+            else { spine.setAttribute('opacity', '0'); }
         }
-
-        // Accessories toggle
         document.getElementById('accessory-mug').setAttribute('opacity', state.accessoryMug);
         document.getElementById('accessory-coffee').setAttribute('opacity', state.accessoryCoffee);
         document.getElementById('accessory-plant').setAttribute('opacity', state.accessoryPlant);
-
-        // Highlight active background spark particles
         ['sparks-focus', 'sparks-overheat', 'sparks-posture'].forEach(id => {
             const el = document.getElementById(id);
             if (el) {
-                if (id === state.sparksId) {
-                    el.classList.remove('opacity-0');
-                    el.classList.add('opacity-100');
-                } else {
-                    el.classList.add('opacity-0');
-                    el.classList.remove('opacity-100');
-                }
+                if (id === state.sparksId) { el.classList.remove('opacity-0'); el.classList.add('opacity-100'); }
+                else { el.classList.add('opacity-0'); el.classList.remove('opacity-100'); }
             }
         });
-
-        // Apply badge classes
         const badge = document.getElementById('char-badge');
-        badge.innerText = state.badge;
-        badge.className = state.badgeClass;
-
+        badge.innerText = state.badge; badge.className = state.badgeClass;
         document.getElementById('char-message').innerText = state.msg;
-
-        // Toggle focus state switch highlight in button controllers
         ['focus', 'overheat', 'posture'].forEach(k => {
             const btn = document.getElementById(`btn-${k}`);
-            if (k === stateKey) {
-                btn.className = "text-[10px] font-black px-3.5 py-2 rounded-full transition-all bg-slate-900 text-white shadow-sm";
-            } else {
-                btn.className = "text-[10px] font-black px-3.5 py-2 rounded-full transition-all bg-slate-100 text-slate-600 hover:text-brand";
-            }
+            if (k === stateKey) { btn.className = "text-[10px] font-black px-3.5 py-2 rounded-full transition-all bg-slate-900 text-white shadow-sm"; }
+            else { btn.className = "text-[10px] font-black px-3.5 py-2 rounded-full transition-all bg-slate-100 text-slate-600 hover:text-brand"; }
         });
     }
 
-    // Sound alert tone with Tone.js
     let synth = null;
     function playAlertSound(toastText) {
         if (!synth) {
             synth = new Tone.PolySynth(Tone.Synth).toDestination();
-            synth.set({
-                oscillator: { type: 'sine' },
-                envelope: { attack: 0.04, decay: 0.08, sustain: 0.2, release: 0.8 }
-            });
+            synth.set({ oscillator: { type: 'sine' }, envelope: { attack: 0.04, decay: 0.08, sustain: 0.2, release: 0.8 } });
         }
-        
         try {
-            Tone.start();
-            const now = Tone.now();
-            synth.triggerAttackRelease("E5", "16n", now);
-            synth.triggerAttackRelease("A5", "16n", now + 0.06);
+            Tone.start(); const now = Tone.now();
+            synth.triggerAttackRelease("E5", "16n", now); synth.triggerAttackRelease("A5", "16n", now + 0.06);
         } catch(e) {}
-
         const output = document.getElementById('alert-toast-output');
-        output.innerText = `💬 "${toastText}"`;
-        output.classList.add('text-brand', 'scale-105');
-        setTimeout(() => {
-            output.classList.remove('text-brand', 'scale-105');
-        }, 1500);
+        output.innerText = `💬 "${toastText}"`; output.classList.add('text-brand', 'scale-105');
+        setTimeout(() => { output.classList.remove('text-brand', 'scale-105'); }, 1500);
     }
 
-    // 3-min reset dimming simulation
-    let dimmerInterval = null;
-    let dimmerActive = false;
-
+    let dimmerInterval = null; let dimmerActive = false;
     function toggleDimmerSimulation() {
         const screen = document.getElementById('dimmer-demo-screen');
         const btn = document.getElementById('dimmer-action-btn');
         const title = document.getElementById('dimmer-title');
         const clock = document.getElementById('dimmer-clock');
-
         if (dimmerActive) {
-            clearInterval(dimmerInterval);
-            dimmerActive = false;
+            clearInterval(dimmerInterval); dimmerActive = false;
             title.innerText = '"목과 어깨가 긴장 상태에 들어갔어요. 잠시 눈을 식혀볼까요?"';
-            clock.innerText = "03:00";
-            btn.innerText = "회복 디밍 체험하기";
+            clock.innerText = "03:00"; btn.innerText = "회복 디밍 체험하기";
             btn.className = "bg-brand text-slate-950 font-extrabold text-[10px] px-4 py-2 rounded-full transition-all shadow-premium hover:bg-brand-dark";
         } else {
-            dimmerActive = true;
-            btn.innerText = "시뮬레이션 취소";
+            dimmerActive = true; btn.innerText = "시뮬레이션 취소";
             btn.className = "bg-slate-800 text-slate-400 font-extrabold text-[10px] px-4 py-2 rounded-full transition-all";
-            
-            let time = 5;
-            clock.innerText = "00:05";
-            title.innerText = "지그시 눈을 감고 눈 세포를 안심시키세요 👁️";
-
+            let time = 5; clock.innerText = "00:05"; title.innerText = "지그시 눈을 감고 눈 세포를 안심시키세요 👁️";
             dimmerInterval = setInterval(() => {
-                time--;
-                clock.innerText = `00:0${time}`;
-                if (time === 3) {
-                    title.innerText = "가슴을 활짝 열어 어깨를 천천히 뒤로 회전하세요 🧘‍♀️";
-                }
+                time--; clock.innerText = `00:0${time}`;
+                if (time === 3) { title.innerText = "가슴을 활짝 열어 어깨를 천천히 뒤로 회전하세요 🧘‍♀️"; }
                 if (time <= 0) {
-                    clearInterval(dimmerInterval);
-                    dimmerActive = false;
-                    clock.innerText = "03:00";
-                    title.innerText = "🔋 회복 완료! 집중력이 100% 재충전되었습니다.";
-                    btn.innerText = "다시 체험해보기";
+                    clearInterval(dimmerInterval); dimmerActive = false; clock.innerText = "03:00";
+                    title.innerText = "🔋 회복 완료! 집중력이 100% 재충전되었습니다."; btn.innerText = "다시 체험해보기";
                     btn.className = "bg-brand text-slate-950 font-extrabold text-[10px] px-4 py-2 rounded-full transition-all shadow-premium hover:bg-brand-dark";
                 }
             }, 1000);
         }
     }
 
-    // Temporary survey handler variables
+    // 7개 질문 전용 메모리 객체 구조
     let userEmailAddress = "";
-    let surveyAnswers = {
-        email: "",
-        q1: "",
-        q2: "",
-        q3: "",
-        q4: "",
-        q5: ""
-    };
+    let surveyAnswers = { email: "", q1: "", q2: "", q3: "", q4: "", q5: "", q6: "", q7: "", source: "" };
 
     function handleWaitlistSubmit(event, source) {
-    event.preventDefault();
+        event.preventDefault();
+        const inputField = document.getElementById(`${source}-email`);
+        const emailVal = inputField ? inputField.value.trim() : "";
+        if (!emailVal) { alert("이메일을 입력해주세요."); return; }
+        
+        userEmailAddress = emailVal;
+        surveyAnswers.email = emailVal;
+        surveyAnswers.source = source;
 
-    const inputField = document.getElementById(`${source}-email`);
-    const emailVal = inputField ? inputField.value.trim() : "";
+        let list = JSON.parse(localStorage.getItem('reflow_beta_waitlist')) || [];
+        if (!list.includes(emailVal)) { list.push(emailVal); localStorage.setItem('reflow_beta_waitlist', JSON.stringify(list)); }
 
-    if (!emailVal) {
-        alert("이메일을 입력해주세요.");
-        return;
+        if (GOOGLE_SCRIPT_URL) {
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: emailVal, source: "사전등록_" + source })
+            }).catch(err => console.warn(err));
+        }
+
+        document.getElementById('main-lander-content').classList.add('hidden');
+        document.getElementById('thank-you-screen').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    userEmailAddress = emailVal;
-    surveyAnswers.email = emailVal;
-    surveyAnswers.source = source;
-
-    document.getElementById('main-lander-content').classList.add('hidden');
-    document.getElementById('thank-you-screen').classList.remove('hidden');
-
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-}
-
     let currentSurveyStep = 1;
-
     function startTallyStepFlow() {
         document.getElementById('thank-you-initial').classList.add('hidden');
         document.getElementById('thank-you-survey-flow').classList.remove('hidden');
     }
 
-    function selectSurveyOption(step, selectedOptionValue) {
-        surveyAnswers[`q${step}`] = selectedOptionValue;
-        document.getElementById(`survey-q${step}`).classList.add('hidden');
+    // Q1 분기 처리 로직
+    function handleQ1Option(val) {
+        const inputContainer = document.getElementById('q1-etc-container');
+        // 기존 활성화 클래스 청소
+        document.querySelectorAll('.q1-btn').forEach(btn => btn.classList.remove('border-brand', 'bg-brand/10'));
         
-        currentSurveyStep = step + 1;
-        const progressPercent = (currentSurveyStep / 5) * 100;
-        document.getElementById('survey-progress-bar').style.width = `${progressPercent}%`;
-        document.getElementById('survey-progress-num').innerText = `${currentSurveyStep} / 5`;
-
-        const nextStepBlock = document.getElementById(`survey-q${currentSurveyStep}`);
-        if (nextStepBlock) {
-            nextStepBlock.classList.remove('hidden');
+        if (val === '기타') {
+            inputContainer.classList.remove('hidden');
+            document.getElementById('q1-etc-input').focus();
+        } else {
+            inputContainer.classList.add('hidden');
+            surveyAnswers.q1 = val;
+            proceedToNextStep(1);
         }
     }
 
-    // ... 기존 코드 유지 ...
+    function submitQ1Etc() {
+        const text = document.getElementById('q1-etc-input').value.trim();
+        if (!text) { alert("내용을 입력해 주세요."); return; }
+        surveyAnswers.q1 = "기타(" + text + ")";
+        proceedToNextStep(1);
+    }
+
+    // Q2 분기 처리 로직
+    function handleQ2Option(val) {
+        const inputContainer = document.getElementById('q2-etc-container');
+        document.querySelectorAll('.q2-btn').forEach(btn => btn.classList.remove('border-brand', 'bg-brand/10'));
+        
+        if (val === '기타') {
+            inputContainer.classList.remove('hidden');
+            document.getElementById('q2-etc-input').focus();
+        } else {
+            inputContainer.classList.add('hidden');
+            surveyAnswers.q2 = val;
+            proceedToNextStep(2);
+        }
+    }
+
+    function submitQ2Etc() {
+        const text = document.getElementById('q2-etc-input').value.trim();
+        if (!text) { alert("내용을 입력해 주세요."); return; }
+        surveyAnswers.q2 = "기타(" + text + ")";
+        proceedToNextStep(2);
+    }
+
+    // 공통 다음 스텝 전송 로직
+    function selectSurveyOption(step, selectedOptionValue) {
+        surveyAnswers[`q${step}`] = selectedOptionValue;
+        proceedToNextStep(step);
+    }
+
+    function proceedToNextStep(step) {
+        document.getElementById(`survey-q${step}`).classList.add('hidden');
+        currentSurveyStep = step + 1;
+        
+        const progressPercent = (currentSurveyStep / 7) * 100;
+        document.getElementById('survey-progress-bar').style.width = `${progressPercent}%`;
+        document.getElementById('survey-progress-num').innerText = `${currentSurveyStep} / 7`;
+
+        const nextStepBlock = document.getElementById(`survey-q${currentSurveyStep}`);
+        if (nextStepBlock) { nextStepBlock.classList.remove('hidden'); }
+    }
 
     async function submitFinalSurvey() {
-        const textVal = document.getElementById('survey-q5-text').value.trim();
-        surveyAnswers.q5 = textVal;
+        const textVal = document.getElementById('survey-q7-text').value.trim();
+        surveyAnswers.q7 = textVal;
 
-        try {
-            await fetch(
-                "https://script.google.com/macros/s/AKfycbyBVU2-CfrJMz2a3huAQ95Vuu1G7tH640ibHXfepRlkbbEkQZfOIsMxLZQaX6QLJ-wN1A/exec",
-                {
-                    method: "POST",
-                    mode: "no-cors",
+        let feedbackLogs = JSON.parse(localStorage.getItem('reflow_feedback_logs')) || [];
+        feedbackLogs.push(surveyAnswers);
+        localStorage.setItem('reflow_feedback_logs', JSON.stringify(feedbackLogs));
+
+        if (GOOGLE_SCRIPT_URL) {
+            const submitBtn = document.querySelector("#survey-q7 button");
+            if (submitBtn) { submitBtn.disabled = true; submitBtn.innerText = "구글 시트에 저장 중..."; }
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         email: surveyAnswers.email,
                         q1: surveyAnswers.q1,
@@ -1166,38 +1085,37 @@
                         q3: surveyAnswers.q3,
                         q4: surveyAnswers.q4,
                         q5: surveyAnswers.q5,
-                        source: surveyAnswers.source
+                        q6: surveyAnswers.q6,
+                        q7: surveyAnswers.q7,
+                        source: "사전등록_" + surveyAnswers.source
                     })
-                }
-            );
-            document.getElementById('thank-you-survey-flow').classList.add('hidden');
-            document.getElementById('thank-you-completed').classList.remove('hidden');
-        } catch(error) {
-            console.error(error);
-            alert("설문 저장에 실패했습니다.");
+                });
+            } catch(error) { console.error(error); }
         }
-    } // <--- 이 닫는 괄호가 누락되어 있었습니다!
+        document.getElementById('thank-you-survey-flow').classList.add('hidden');
+        document.getElementById('thank-you-completed').classList.remove('hidden');
+    }
 
     function returnToMainLander() {
         currentSurveyStep = 1;
-        document.getElementById('survey-progress-bar').style.width = "20%";
-        document.getElementById('survey-progress-num').innerText = "1 / 5";
-
+        document.getElementById('survey-progress-bar').style.width = "14.2%";
+        document.getElementById('survey-progress-num').innerText = "1 / 7";
         document.getElementById('thank-you-completed').classList.add('hidden');
         document.getElementById('thank-you-initial').classList.remove('hidden');
         document.getElementById('thank-you-screen').classList.add('hidden');
         document.getElementById('main-lander-content').classList.remove('hidden');
+        
+        // 구조 완전 초기화
+        document.getElementById('q1-etc-container').classList.add('hidden');
+        document.getElementById('q1-etc-input').value = "";
+        document.getElementById('q2-etc-container').classList.add('hidden');
+        document.getElementById('q2-etc-input').value = "";
 
-        for (let i = 1; i <= 5; i++) {
+        for (let i = 1; i <= 7; i++) {
             const qBlock = document.getElementById(`survey-q${i}`);
-            if (i === 1) {
-                qBlock.classList.remove('hidden');
-            } else {
-                qBlock.classList.add('hidden');
-            }
+            if (i === 1) { qBlock.classList.remove('hidden'); } else { qBlock.classList.add('hidden'); }
         }
-        document.getElementById('survey-q5-text').value = "";
-
+        document.getElementById('survey-q7-text').value = "";
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 </script>
